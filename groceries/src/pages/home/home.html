@@ -8,15 +8,18 @@
 
 <ion-content [fullscreen]="true">
 
+  <h3 text-center *ngIf="loadItems().length === 0">
+    No items available.<br> Try adding one!
+  </h3>
   <ion-list padding>
-    <ion-item-sliding *ngFor="let item of items, let i = index" #slidingItem>
+    <ion-item-sliding *ngFor="let item of loadItems(), let i = index" #itemSliding>
       <ion-item>
         <h1>{{item.name}}</h1>
         <h2>Quantity: {{item.quantity}}</h2>
         <h2>Price: ${{item.price}}</h2>
       </ion-item>
       <ion-item-options>
-        <button ion-button color="primary"(click)="editItem(item, i, slidingItem)">
+        <button ion-button color="primary" (click)="editItem(item, i, itemSliding)">
           <ion-icon name="construct"></ion-icon>
           Edit
         </button>
